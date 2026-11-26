@@ -1,8 +1,13 @@
+[![make.fun · best-national-statistics-site-20261126-0539](https://make.fun/badge/best-national-statistics-site-20261126-0539.svg)](https://make.fun/bounty/best-national-statistics-site-20261126-0539?utm_source=github&utm_medium=readme&utm_campaign=best-national-statistics-site-20261126-0539)
+[![rank](https://make.fun/badge/best-national-statistics-site-20261126-0539/lively-wren-88-6565/national-statistics-site/rank.svg)](https://make.fun/bounty/best-national-statistics-site-20261126-0539/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=best-national-statistics-site-20261126-0539)
+[![reward](https://make.fun/badge/best-national-statistics-site-20261126-0539/lively-wren-88-6565/national-statistics-site/reward.svg)](https://make.fun/bounty/best-national-statistics-site-20261126-0539?utm_source=github&utm_medium=readme&utm_campaign=best-national-statistics-site-20261126-0539)
+
 # America by the Numbers — US National Statistics
 
 An original, offline national statistics site for the United States, built for
 make.fun's "Make the best national statistics site" bounty
-(`best-national-statistics-site-20261126-0539`).
+(`best-national-statistics-site-20261126-0539`). Bounty page:
+https://make.fun/bounty/best-national-statistics-site-20261126-0539
 
 ## What it is
 
