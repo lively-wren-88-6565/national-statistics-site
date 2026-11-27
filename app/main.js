@@ -108,17 +108,17 @@ function wirePopulation() {
   const bSel = document.getElementById('cmp-b');
   const updateCmp = () => {
     if (!out || !aSel || !bSel) return;
-    const a = STATES.find((s) => s.pop === Number(aSel.value));
-    const b = STATES.find((s) => s.pop === Number(bSel.value));
+    const a = STATES.find((s) => s.pop2024 === Number(aSel.value));
+    const b = STATES.find((s) => s.pop2024 === Number(bSel.value));
     if (!a || !b) return;
     if (a.state === b.state) {
       out.textContent = 'Pick two different states to compare them.';
       return;
     }
-    const bigger = a.pop > b.pop ? a : b;
-    const smaller = a.pop > b.pop ? b : a;
-    const diff = fmtPop(bigger.pop - smaller.pop);
-    out.textContent = `${bigger.state} (${fmtPop(bigger.pop)}) is larger than ${smaller.state} (${fmtPop(smaller.pop)}) by ${diff} — ${stateShare(bigger.pop).toFixed(1)}% of the US vs ${stateShare(smaller.pop).toFixed(1)}%.`;
+    const bigger = a.pop2024 > b.pop2024 ? a : b;
+    const smaller = a.pop2024 > b.pop2024 ? b : a;
+    const diff = fmtPop(bigger.pop2024 - smaller.pop2024);
+    out.textContent = `${bigger.state} (${fmtPop(bigger.pop2024)}) is larger than ${smaller.state} (${fmtPop(smaller.pop2024)}) by ${diff} — ${stateShare(bigger.pop2024).toFixed(1)}% of the US vs ${stateShare(smaller.pop2024).toFixed(1)}%.`;
   };
   if (aSel) aSel.addEventListener('change', updateCmp);
   if (bSel) bSel.addEventListener('change', updateCmp);

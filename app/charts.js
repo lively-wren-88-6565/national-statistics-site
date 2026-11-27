@@ -19,7 +19,7 @@ export function barChart(values, { height = 220, color = '#0f2a44', accent = '#e
     .map((v, i) => {
       const x = padL + bw * i + (bw - barW) / 2;
       const top = y(Math.max(v.value, 0));
-      const bottom = y(0);
+      const bottom = y(Math.min(v.value, 0));
       const h = Math.max(2, bottom - top);
       const fill = i === values.length - 1 ? accent : color;
       return `<rect x="${x.toFixed(1)}" y="${top.toFixed(1)}" width="${barW}" height="${h.toFixed(1)}" rx="3" fill="${fill}"/>` +
@@ -45,6 +45,43 @@ export function hbarChart(values, { height = 200 } = {}) {
     })
     .join('');
   return `<svg viewBox="0 0 ${w} ${height}" width="100%" role="img" aria-label="Horizontal bar chart">${rows}</svg>`;
+}
+
+// Monthly line chart. Points with a null value break the line (a missing
+// month is a gap, never a zero). Labels are shown for Jan of each year and
+// for the last point only, so the axis stays readable with 30+ points.
+export function lineChart(points, { height = 210, color = '#0f2a44', accent = '#e8a33d', unit = '' } = {}) {
+  const w = 560;
+  const padL = 44;
+  const padR = 14;
+  const padT = 26;
+  const padB = 30;
+  const vals = points.filter((p) => p.value !== null).map((p) => p.value);
+  const min = Math.floor(Math.min(...vals) * 2) / 2 - 0.2;
+  const max = Math.ceil(Math.max(...vals) * 2) / 2 + 0.2;
+  const x = (i) => padL + (i * (w - padL - padR)) / (points.length - 1);
+  const y = (v) => padT + (1 - (v - min) / (max - min)) * (height - padT - padB);
+  let path = '';
+  let started = false;
+  points.forEach((p, i) => {
+    if (p.value === null) {
+      started = false;
+      return;
+    }
+    path += `${started ? 'L' : 'M'}${x(i).toFixed(1)},${y(p.value).toFixed(1)} `;
+    started = true;
+  });
+  const dots = points
+    .map((p, i) => {
+      if (p.value === null) return `<text x="${x(i).toFixed(1)}" y="${(height - 10).toFixed(1)}" text-anchor="middle" font-size="10" fill="#9a6a14">gap</text>`;
+      const show = p.label.startsWith('Jan') || i === points.length - 1;
+      return (show ? `<text x="${x(i).toFixed(1)}" y="${(y(p.value) - 10).toFixed(1)}" text-anchor="middle" font-size="12" font-weight="700" fill="#17222e">${esc(p.display)}</text>` : '') +
+        (show ? `<text x="${x(i).toFixed(1)}" y="${height - 10}" text-anchor="middle" font-size="10.5" fill="#5a6b7d">${esc(p.label)}</text>` : '') +
+        `<circle cx="${x(i).toFixed(1)}" cy="${y(p.value).toFixed(1)}" r="${show ? 4.5 : 2.5}" fill="${i === points.length - 1 ? accent : color}"/>`;
+    })
+    .join('');
+  const grid = [min, (min + max) / 2, max].map((v) => `<line x1="${padL}" y1="${y(v).toFixed(1)}" x2="${w - padR}" y2="${y(v).toFixed(1)}" stroke="#e3e8ed" stroke-width="1"/><text x="${padL - 6}" y="${(y(v) + 4).toFixed(1)}" text-anchor="end" font-size="11" fill="#5a6b7d">${v.toFixed(1)}%</text>`).join('');
+  return `<svg viewBox="0 0 ${w} ${height}" width="100%" role="img" aria-label="Line chart, ${esc(unit)}">${grid}<path d="${path}" fill="none" stroke="${color}" stroke-width="2.5"/>${dots}</svg>`;
 }
 
 // Simple two-point slope chart for population.

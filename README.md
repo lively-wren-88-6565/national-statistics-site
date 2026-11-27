@@ -14,16 +14,17 @@ https://make.fun/bounty/best-national-statistics-site-20261126-0539
 A static site (no build step, no network requests) with six linked sections:
 
 - **Overview** — six KPI cards (GDP, GDP per capita, population, unemployment,
-  median household income, poverty rate), GDP and population charts, largest
-  states, and a live indicator search.
-- **Economy** — nominal GDP 2022–2025 (BEA), real growth, a level/yearly-change
+  median household income, poverty rate), four key findings, GDP and population
+  charts, largest states, and a live indicator search.
+- **Economy** — nominal GDP 2015–2025 (BEA), real growth, a level/yearly-change
   chart toggle, the Q3 2026 quarterly figure kept clearly separate from annual
   GDP, and a working CSV download.
 - **Population** — 340.1m at 1 July 2024, migration-driven growth, a two-state
-  comparison tool, and a sortable, searchable top-10 states table (tap a row
-  for its share of the country).
-- **Jobs & Prices** — unemployment 4.1% (Oct 2026), +165,000 nonfarm jobs, CPI
-  +0.4% month-on-month with an honest note on why no year-on-year figure exists.
+  comparison tool, and a sortable, searchable table of all 50 states plus DC
+  (the 51 rows sum exactly to the national total).
+- **Jobs & Prices** — unemployment monthly, Jan 2024 – Oct 2026 (34 months,
+  with the October 2025 shutdown gap shown as a break), +165,000 nonfarm jobs,
+  CPI +0.4% month-on-month with an honest note on why no year-on-year figure exists.
 - **Income** — median household income $81,604 (ACS 2024), distribution,
   highest/lowest states, poverty 10.6% and uninsured 8.0%.
 - **Sources & Method** — every figure traced to its agency, table and
